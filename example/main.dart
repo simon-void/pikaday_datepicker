@@ -12,7 +12,8 @@ void main() {
     selector: 'showcase-pikadate-component',
     template: '''<h1>AngularDart2-datepicker</h1>
                  <pikaday [(day)]="selectedDay" format="DD-MM-YYYY"
-                          firstDay="1" minDate="2010-1-1" maxDate="2025-12-31">
+                          firstDay="1" minDate="2010-1-1" maxDate="2025-12-31"
+                          placeholder="select a day" showDayOnInit="false">
                  </pikaday>
                  <div>selectedDay: {{selectedDay | date}}</div>''',
     directives: const [PikadayComponent])

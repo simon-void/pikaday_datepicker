@@ -16,7 +16,7 @@ import 'package:angular2/core.dart';
 
 @Component(
     selector: 'pikaday',
-    template: '<input type="text" id="{{id}}">')
+    template: '<input type="text" id="{{id}}" placeholder="{{placeholder}}">')
 class PikadayComponent implements AfterViewInit {
   static int _componentCounter = 0;
   final String id = "pikadayInput${++_componentCounter}";
@@ -32,6 +32,9 @@ class PikadayComponent implements AfterViewInit {
   /// Corresponds to setDefaultDate in pikaday.js but is true by default.
   /// It becomes only active, if day is provided. (Class: bool or boolString)
   @Input() dynamic showDayOnInit = true;
+
+  /// Sets the placeholder of the pikaday-inputfield.
+  @Input() String placeholder;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Automatically show/hide the datepicker on field focus.

@@ -52,6 +52,7 @@ PikadayComponent has many useful options:
   - `day` the DateTime instance to display/update
 - one-way attribues (which can be provided as instance of type `String` or there real type (`int`/`bool`/`DateTime` with format `yyyy-mm-dd`))
   - `showDayOnInit` make the `day` the initial selected value
+  - `placeholder` sets the placeholder of the pikaday-inputfield
   - `bound` automatically show/hide the datepicker on input field focus (default `true` if `field` is set)
   - `position` preferred position of the datepicker relative to the form field, e.g.: `top right`, `bottom right` **Note:** automatic adjustment may occur to avoid datepicker from being displayed outside the viewport, see (default to 'bottom left')
   - `reposition` can be set to false to not reposition datepicker within the viewport, forcing it to take the configured `position` (default: true)
