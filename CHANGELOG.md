@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.5 - 2016-12-16
+
+- fixed angular transformer configuration (again, as in 0.8.3)
+
 ## 0.8.4 - 2016-12-16
 
 - added placeholder attribute to Pikaday-inputfield 
