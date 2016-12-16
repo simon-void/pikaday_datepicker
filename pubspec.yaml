@@ -1,6 +1,6 @@
 name: pikaday_datepicker
 description: Provides an Angular2 datepicker component by wrapping the lightweight pikaday js-library.
-version: 0.8.2
+version: 0.8.3
 author: Stephan Schroeder <simon.void+github@gmail.com>
 homepage: https://github.com/simon-void/pikaday_datepicker
 environment:
@@ -9,12 +9,5 @@ dependencies:
   angular2: ^2.2.0
 dev_dependencies:
   browser: ^0.10.0
-#  dart_to_js_script_rewriter: ^1.0.1
 transformers:
 - angular2
-#    platform_directives:
-#    - 'package:angular2/common.dart#COMMON_DIRECTIVES'
-#    platform_pipes:
-#    - 'package:angular2/common.dart#COMMON_PIPES'
-#    entry_points: example/main.dart
-#- dart_to_js_script_rewriter
