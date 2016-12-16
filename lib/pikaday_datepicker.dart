@@ -6,7 +6,8 @@ import 'package:angular2/core.dart';
 /// Angular2 component wrapper around the Pikaday-js lib. You will have to
 /// link to pikaday.js (Get the latest version from it's
 /// [GitHub page](https://github.com/dbushell/Pikaday) and if you want
-/// a custom date format (which is highly likable) also to [moment.js](http://momentjs.com/).
+/// a custom date format (which is highly likable) also to [moment.js](http://momentjs.com/)).
+///
 /// Attribute documentation adapted from the
 /// [pikaday.js documentation](https://github.com/dbushell/Pikaday).
 ///

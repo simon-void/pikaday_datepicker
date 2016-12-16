@@ -82,8 +82,8 @@ Thanks to [David Bushell](https://github.com/dbushell) for writing [Pikaday].
 
 Copyright © 2016 Stephan Schröder | BSD & MIT license
 
-  [Pikaday]:     http://dbushell.github.com/Pikaday/                              "Pikaday"
-  [Moment.js]:      http://momentjs.com/                                             "moment.js"
+  [Pikaday]:     https://github.com/dbushell/Pikaday                              "Pikaday"
+  [Moment.js]:   http://momentjs.com/                                             "moment.js"
   [screenshot]:  https://raw.github.com/dbushell/Pikaday/gh-pages/screenshot.png  "Screenshot"
   [issues]:      https://github.com/simon-void/pikaday_component/issues           "Issues"
   

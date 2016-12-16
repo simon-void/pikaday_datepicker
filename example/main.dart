@@ -1,7 +1,7 @@
 import 'package:angular2/platform/browser.dart';
 import 'package:angular2/core.dart';
 
-import 'package:pikaday_datepicker/pikaday_component.dart';
+import 'package:pikaday_datepicker/pikaday_datepicker.dart';
 
 void main() {
   bootstrap(AppComponent);
