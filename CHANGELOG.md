@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.6 - 2017-01-06
+
+- fixed Usage section in README.md
+
 ## 0.8.5 - 2016-12-16
 
 - fixed angular transformer configuration (again, as in 0.8.3)

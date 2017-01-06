@@ -19,13 +19,14 @@ Import and use **PikadayComponent** into your AngularDart2 component:
 
 ```dart
 import 'package:angular2/core.dart';
-import 'package:pikaday_datepicker/pikaday_component.dart';
+import 'package:pikaday_datepicker/pikaday_datepicker.dart';
 
 @Component(
     selector: 'my-app',
     template: '''<h1>AngularDart2-datepicker</h1>
                  <pikaday [(day)]="selectedDay" format="DD-MM-YYYY"
-                          firstDay="1" minDate="2010-1-1" maxDate="2025-12-31">
+                          minDate="2010-1-1" maxDate="2025-12-31"
+                          firstDay="1">
                  </pikaday>
                  <div>selectedDay: {{selectedDay | date}}</div>''',
     directives: const [PikadayComponent]
