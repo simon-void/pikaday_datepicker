@@ -1,8 +1,12 @@
 # Changelog
 
+## 0.8.7 - 2017-01-17
+
+- README.md: fixed Usage section a little more and added a Common Problems section.
+
 ## 0.8.6 - 2017-01-06
 
-- fixed Usage section in README.md
+- README.md: fixed Usage section
 
 ## 0.8.5 - 2016-12-16
 

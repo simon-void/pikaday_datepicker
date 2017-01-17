@@ -36,7 +36,8 @@ class AppComponent {
 }
 ```
 
-Don't forget to include links to the js-libs into your html-file:
+Don't forget to link to the [Pikaday]-js library (with it's css file) and
+the optional but highly advisable [Moment.js] library (for advanced date formating) in your index.html-file:
 
 ```html
 <link rel="stylesheet" href="pikaday.css">
@@ -44,7 +45,8 @@ Don't forget to include links to the js-libs into your html-file:
 <script src="pikaday.js"></script>
 ```
 
-[Moment.js] is used for advanced formatting and is optional (but you'll likely use it).
+Download a local copy of those libs, put them in or under the directory your index.html file is in,
+an link accordingly.
 
 ### Configuration
 
@@ -74,6 +76,17 @@ PikadayComponent has many useful options:
   - `mainCalendarIsLeft` when `numberOfMonths` is used, this will help you to choose where the main calendar will be (default `true`/`left`, can be set to `false`/`right`). Only used for the first display or when a selected date is not already visible
   - `theme` define a classname that can be used as a hook for styling different themes (default `null`)
 
+### Common problems
+
+- console error msg: **constructor not a function**
+
+The Dart-Wrapper can't access the Pikaday-JS-constructor.
+You probably forgot to link to the js-lib itself in index.html:
+```html
+<link rel="stylesheet" href="pikaday.css">
+<script src="moment.js"></script>
+<script src="pikaday.js"></script>
+```
 * * *
 
 ## Authors
