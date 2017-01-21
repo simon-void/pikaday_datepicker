@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0 - 2017-01-21
+
+- refactored out a plain old Dart Wrapper around Pikaday that can be used independently of the Angular2 Component.
+
 ## 0.8.7 - 2017-01-17
 
 - README.md: fixed Usage section a little more and added a Common Problems section.

@@ -1,45 +1,50 @@
 import 'dart:html';
 import 'dart:js';
 
-import 'package:angular2/core.dart';
-
-/// Angular2 component wrapper around the Pikaday-js lib. You will have to
+/// Basic dart wrapper around the Pikaday-js lib. You will have to
 /// link to pikaday.js (Get the latest version from it's
 /// [GitHub page](https://github.com/dbushell/Pikaday) and if you want
 /// a custom date format (which is highly likable) also to [moment.js](http://momentjs.com/)).
 ///
 /// Attribute documentation adapted from the
 /// [pikaday.js documentation](https://github.com/dbushell/Pikaday).
-///
-/// You can't set a container DOM node nore a callback, but you can listen to
-/// dayChange to be informed about selected days (DateTime instances).
 
-@Component(
-    selector: 'pikaday',
-    template: '<input type="text" id="{{id}}" placeholder="{{placeholder}}">')
-class PikadayComponent implements AfterViewInit {
-  static int _componentCounter = 0;
-  final String id = "pikadayInput${++_componentCounter}";
+/// Upgrade the input element to a DatePicker.
+/// Invoke onSelectDay when a date is selected (and provide it as a parameter).
+/// Optionally return the js-wrapper object. (Implementation may change).
+upgradeInputToDatepicker(
+    InputElement datepickerElem,
+    onSelectDay(DateTime),
+    PikadayParams params) {
 
-  JsObject _picker;
+  assert(datepickerElem!=null);
+  assert(onSelectDay!=null);
+  assert(params!=null);
 
+  Map<String, dynamic> paramsMap = params.asMap();
+  paramsMap['field'] = datepickerElem;
+  paramsMap['onSelect'] = onSelectDay;
+
+  JsObject jsPikaday = new JsObject(
+      context['Pikaday'],
+      [new JsObject.jsify(paramsMap)]);
+
+  return jsPikaday;
+}
+
+class PikadayParams {
   /// Corresponds to defaultDate in pikaday.js, which is the initially
   /// selected date of the datepicker.
-  @Input() DateTime day;
-  /// Emits selected dates.
-  @Output() EventEmitter dayChange = new EventEmitter<DateTime>();
+  DateTime defaultDay;
 
   /// Corresponds to setDefaultDate in pikaday.js but is true by default.
   /// It becomes only active, if day is provided. (Class: bool or boolString)
-  @Input() dynamic showDayOnInit = true;
-
-  /// Sets the placeholder of the pikaday-inputfield.
-  @Input() String placeholder;
+  dynamic showDayOnInit = true;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Automatically show/hide the datepicker on field focus.
   /// Defaults to true. (Class: bool or boolString)
-  @Input() dynamic bound;
+  dynamic bound;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Determines the preferred position of the datepicker
@@ -47,45 +52,45 @@ class PikadayComponent implements AfterViewInit {
   /// Note: automatic adjustment may occur to avoid datepicker from being
   /// displayed outside the viewport.
   /// Defaults to 'bottom left'.
-  @Input() String position;
+  String position;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// This can be set to false to not reposition datepicker within the viewport,
   /// forcing it to take the configured position.
   /// Defaults to true. (Class: bool or boolString)
-  @Input() dynamic reposition;
+  dynamic reposition;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// This is the default output format of this datepicker.
   /// (It requires Moment.js for custom formatting)
-  @Input() String format;
+  String format;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// This is the default flag for moment's strict date parsing.
   /// (It requires Moment.js for custom formatting) (Class: bool or boolString)
-  @Input() dynamic formatString;
+  dynamic formatString;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Sets the first day of the week (0: Sunday, 1: Monday, etc).
   /// (Class: int or intString)
-  @Input() dynamic firstDay;
+  dynamic firstDay;
 
   /// Corresponds to minDate in pikaday.js.
   /// Will be parsed as to a DateTime and determines the minimum/earliest date
   /// that can be selected.
   /// (Class: DateTime or dayString with format: 'yyyy-mm-dd')
-  @Input() dynamic minDate;
+  dynamic minDate;
 
   /// Corresponds to maxDate in pikaday.js.
   /// Will be parsed as to a DateTime and determines the maximum/latest date
   /// that can be selected.
   /// (Class: DateTime or dayString with format: 'yyyy-mm-dd')
-  @Input() dynamic maxDate;
+  dynamic maxDate;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Set to true to disallow selection of Saturdays or Sundays.
   /// (Class: bool or boolString)
-  @Input() dynamic disableWeekends;
+  dynamic disableWeekends;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Number of years either side (e.g. 10) or array of upper/lower range
@@ -93,42 +98,43 @@ class PikadayComponent implements AfterViewInit {
   /// nor a list of two ascending ints.
   /// If neither is provided, the component tries to fall back on the year of
   /// [minDate] and [maxDate]
-  @Input() dynamic yearRange;
+  dynamic yearRange;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Show the ISO week number at the head of the row.
   /// Defaults to false. (Class: bool or boolString)
-  @Input() dynamic showWeekNumber;
+  dynamic showWeekNumber;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Reverse the calendar for right-to-left languages.
   /// (Class: bool or boolString)
-  @Input() dynamic isRTL;
+  dynamic isRTL;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Determines language defaults for month and weekday names.
-  @Input() Map<String, dynamic> i18n; //value should be of type String or List<String>
+  /// Values should be of type String or List<String>.
+  Map<String, dynamic> i18n;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Add an additional text to append to the year in the title.
-  @Input() String yearSuffix;
+  String yearSuffix;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Render the month after year in the title.
   /// Defaults to false. (Class: bool or boolString)
-  @Input() dynamic showMonthAfterYear;
+  dynamic showMonthAfterYear;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Renders days of the calendar grid that fall in the next or previous months
   /// to the current month instead of rendering an empty table cell.
   /// Defaults to false. (Class: bool or boolString)
-  @Input() dynamic showDaysInNextAndPreviousMonths = true;
+  dynamic showDaysInNextAndPreviousMonths = true;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Determines the number of visible calendars.
   /// Defaults to true.
   /// (Class: int or intString)
-  @Input() dynamic numberOfMonths;
+  dynamic numberOfMonths;
 
   /// Corresponds to mainCalendar in pikaday.js.
   /// mainCalendar: isNull ? null : isLeft ? "left" : "right".
@@ -136,24 +142,14 @@ class PikadayComponent implements AfterViewInit {
   /// where the main calendar will be (default left, can be set to right).
   /// Only used for the first display or when a selected date is not already visible.
   /// (Class: bool or boolString)
-  @Input() dynamic mainCalendarIsLeft;
+  dynamic mainCalendarIsLeft;
 
   /// Corresponds to the parameter with the same name in pikaday.js.
   /// Define a classname that can be used as a hook for styling different themes.
   /// Defaults to null.
-  @Input() String theme;
+  String theme;
 
-  @override
-  ngAfterViewInit() {
-    InputElement datepickerElem = querySelector('#$id');
-
-    _picker = new JsObject(
-        context['Pikaday'],
-        [new JsObject.jsify(
-            _getPikadayParams(datepickerElem))]);
-  }
-
-  Map<String, dynamic> _getPikadayParams(InputElement datepickerElem) {
+  Map<String, dynamic> asMap() {
     int strToIntOrNull(String intStr) {
       return int.parse(intStr, onError: (_)=>null);
     }
@@ -202,15 +198,10 @@ class PikadayComponent implements AfterViewInit {
       return null;
     }
 
-    Map<String, dynamic> params = {
-      'field': datepickerElem,
-      'onSelect': (DateTime dayPicked) {
-        dayChange.emit(dayPicked);
-      }
-    };
+    Map<String, dynamic> params = {};
 
-    if (day != null) {
-      params['defaultDate'] = day;
+    if (defaultDay != null) {
+      params['defaultDate'] = defaultDay;
       params['setDefaultDate'] = toBoolOrNull(showDayOnInit);
     }
     if (bound != null) {

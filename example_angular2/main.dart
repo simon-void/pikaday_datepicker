@@ -1,7 +1,7 @@
 import 'package:angular2/platform/browser.dart';
 import 'package:angular2/core.dart';
 
-import 'package:pikaday_datepicker/pikaday_datepicker.dart';
+import 'package:pikaday_datepicker/pikaday_angular2.dart';
 
 void main() {
   bootstrap(AppComponent);
@@ -10,8 +10,7 @@ void main() {
 // example app to showcase the PikadayComponent.
 @Component(
     selector: 'showcase-pikadate-component',
-    template: '''<h1>AngularDart2-datepicker</h1>
-                 <pikaday [(day)]="selectedDay" format="DD-MM-YYYY"
+    template: '''<pikaday [(day)]="selectedDay" format="DD-MM-YYYY"
                           firstDay="1" minDate="2010-1-1" maxDate="2025-12-31"
                           placeholder="select a day" showDayOnInit="false">
                  </pikaday>
