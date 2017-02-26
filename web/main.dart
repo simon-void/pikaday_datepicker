@@ -1,24 +1,26 @@
 import 'dart:html';
 
-import 'package:intl/intl.dart';
-
 import 'package:pikaday_datepicker/pikaday_wrapper.dart';
 
 void main() {
-  final inputElem = new InputElement() ..placeholder="select a day";
+  final inputElem = new InputElement()
+    ..placeholder = "select a day";
   final outputElem = new DivElement();
 
   final params = new PikadayParams()
     ..defaultDay = new DateTime(2015, 2, 1)
-    ..format="DD-MM-YYYY"
-    ..firstDay="1"
-    ..minDate="2010-1-1"
-    ..maxDate="2025-12-31"
-    ..showDayOnInit="false";
+    ..format = "DD-MM-YYYY"
+    ..firstDay = "1"
+    ..minDate = "2010-1-1"
+    ..maxDate = "2025-12-31"
+    ..showDayOnInit = "false";
 
-  final dayFormatter = new DateFormat('MMM dd, yyyy');
-  updateOutput(DateTime selectedDay){
-    outputElem.text = "selectedDay: ${dayFormatter.format(selectedDay)}";
+  updateOutput(DateTime selectedDay) {
+    // look into the intl package for advanced date formation
+    var formatedDay =
+        "${selectedDay.day}.${selectedDay.month}.${selectedDay.year}";
+
+    outputElem.text = "selectedDay: $formatedDay";
   }
   // set an initial output to be completly equivalent with angular version
   updateOutput(params.defaultDay);
@@ -29,7 +31,5 @@ void main() {
   // wire the elements to the page
   final appDiv = querySelector("#datepickerShowcase");
   appDiv.text = "";
-  appDiv.children
-    ..add(inputElem)
-    ..add(outputElem);
+  appDiv.children..add(inputElem)..add(outputElem);
 }

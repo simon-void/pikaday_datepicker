@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0 - 2017-02-26
+
+- moved the angular2 part into it's own package (pikaday_datepicker_angular2),
+ so that users of the vanilla dart version (this package) won't have to deal
+ with the angular2 sources/transformers.
+
 ## 1.0.0 - 2017-01-21
 
 - refactored out a plain old Dart Wrapper around Pikaday that can be used independently of the Angular2 Component.

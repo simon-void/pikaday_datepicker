@@ -1,7 +1,7 @@
 PikadayComponent
 ========
 
-### A Dart Datepicker usable as a AngularDart2 component or by using plain old Dart (with dart:html)
+### A Dart Datepicker usable (with dart:html)
 
 * wraps a lightweight js-lib ([Pikaday], less than 5kb minified and gzipped)
 * one optinal dependency, if date format needs to be changed ([Moment.js], less than 25kb minified and gzipped)
@@ -15,7 +15,7 @@ Also see the [changelog](CHANGELOG.md)
 
 ## Usage
 
-### general Usage
+### html-file config
 
 Link to the [Pikaday]-js library (with it's css file) and
 the optional but highly advisable [Moment.js] library (for advanced date formating) in your index.html-file:
@@ -29,35 +29,9 @@ the optional but highly advisable [Moment.js] library (for advanced date formati
 Download a local copy of those libs, put them in or under the directory your index.html file is in,
 an link accordingly.
 
-### Angular2 Usage
+### dart-file usage
 
-Check out the example under example_angular2!
-
-Import and use **PikadayComponent** into your AngularDart2 component:
-
-```dart
-import 'package:angular2/core.dart';
-import 'package:pikaday_datepicker/pikaday_angular2.dart';
-
-@Component(
-    selector: 'my-app',
-    template: '''<h1>AngularDart2-datepicker</h1>
-                 <pikaday [(day)]="selectedDay" format="DD-MM-YYYY"
-                          minDate="2010-1-1" maxDate="2025-12-31"
-                          firstDay="1">
-                 </pikaday>
-                 <div>selectedDay: {{selectedDay | date}}</div>''',
-    directives: const [PikadayComponent]
-)
-class AppComponent {
-  DateTime selectedDay = new DateTime(2016, 12, 14);
-}
-```
-
-### Basic/Vanilla Dart Usage
-
-Check out the example under example_dart_wrapper to see how to use pikaday from plain
-and simple Dart code using `dart:html`!
+Check out the example under web.
 
 Import and use **PikadayParams** and **upgradeInputToDatepicker(...)** into your dart code:
 
@@ -95,7 +69,7 @@ void main() {
 }
 ```
 
-### plain old java - Configuration
+### Configuration
 
 PikadayParams has many useful options, which can be provided as instance of type `String` or their real type (`int`/`bool`/`DateTime` with format `yyyy-mm-dd`):
  - `defaultDay` doesn't what it sounds like
@@ -119,16 +93,6 @@ PikadayParams has many useful options, which can be provided as instance of type
  - `numberOfMonths` number of visible calendars
  - `mainCalendarIsLeft` when `numberOfMonths` is used, this will help you to choose where the main calendar will be (default `true`/`left`, can be set to `false`/`right`). Only used for the first display or when a selected date is not already visible
  - `theme` define a classname that can be used as a hook for styling different themes (default `null`)
-
-### Angular2 component - Configuration
-
-PikadayComponent has many useful options:
-- two-way data binding:
-  - `day` the DateTime instance to display/update (replacing `defaultDay` from PikadayParams)
-- one-way attribues
-  - `cssClasses` setting css classes on input (<input class="{{cssClasses}}>)
-  - `placeholder` sets the placeholder of the pikaday-inputfield
-  - everything else from PikadayParams
   
 ### Common problems
 
@@ -149,7 +113,7 @@ You probably forgot to link to the js-lib itself in index.html:
 
 Thanks to [David Bushell](https://github.com/dbushell) for writing [Pikaday].
 
-Copyright © 2016 Stephan Schröder | BSD & MIT license
+Copyright © 2017 Stephan Schröder | BSD & MIT license
 
   [Pikaday]:     https://github.com/dbushell/Pikaday                              "Pikaday"
   [Moment.js]:   http://momentjs.com/                                             "moment.js"
