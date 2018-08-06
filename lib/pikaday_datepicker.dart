@@ -14,7 +14,7 @@ import 'dart:js';
 /// Optionally return the js-wrapper object. (Implementation may change).
 upgradeInputToDatepicker(
     InputElement datepickerElem,
-    onSelectDay(DateTime),
+    void Function(DateTime) onSelectDay,
     PikadayParams params) {
 
   assert(datepickerElem!=null);
@@ -151,7 +151,7 @@ class PikadayParams {
 
   Map<String, dynamic> asMap() {
     int strToIntOrNull(String intStr) {
-      return int.parse(intStr, onError: (_)=>null);
+      return int.parse(intStr);
     }
     int toIntOrNull(var value) {
       if(value is int) {

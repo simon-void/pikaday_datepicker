@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0 - 2018-08-06
+
+- upgraded to Dart2
+- upgraded to moment.js 2.22.2
+- upgraded to pikaday.js 1.7.0
+
 ## 2.0.0 - 2017-02-26
 
 - moved the angular2 part into it's own package (pikaday_datepicker_angular2),

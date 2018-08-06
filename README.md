@@ -1,4 +1,4 @@
-PikadayComponent
+PikadayDatepicker
 ========
 
 ### A Dart Datepicker usable (with dart:html)
@@ -38,7 +38,7 @@ Import and use **PikadayParams** and **upgradeInputToDatepicker(...)** into your
 ```dart
 import 'dart:html';
 import 'package:intl/intl.dart';
-import 'package:pikaday_datepicker/pikaday_wrapper.dart';
+import 'package:pikaday_datepicker/pikaday_datepicker.dart';
 
 void main() {
   final inputElem = new InputElement() ..placeholder="select a day";

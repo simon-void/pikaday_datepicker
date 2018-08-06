@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import 'package:pikaday_datepicker/pikaday_wrapper.dart';
+import 'package:pikaday_datepicker/pikaday_datepicker.dart';
 
 void main() {
   final inputElem = new InputElement()

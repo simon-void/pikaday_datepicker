@@ -1,9 +1,10 @@
 name: pikaday_datepicker
 description: Provides a dart datepicker by wrapping the lightweight pikaday js-library.
-version: 2.0.0
+version: 3.0.0
 author: Stephan Schroeder <simon.void+github@gmail.com>
 homepage: https://github.com/simon-void/pikaday_datepicker
 environment:
-  sdk: '>=1.20.0 <2.0.0'
+  sdk: '>=2.0.0 <3.0.0'
 dev_dependencies:
-  browser: ^0.10.0
+  build_runner: ^0.10.0
+  build_web_compilers: ^0.4.0
