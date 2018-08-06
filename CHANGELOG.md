@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.0.1 - 2018-08-06
+
+- downgraded minimum dart-sdk from 2.0.0 to 2.0.0-dev.69.3 because that is the version pub.dartlang.org currently employs
+to check packages.
+
 ## 3.0.0 - 2018-08-06
 
 - upgraded to Dart2
